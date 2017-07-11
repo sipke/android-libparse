@@ -38,6 +38,12 @@ public interface IParse {
     void Parse(byte[] data);
 
     /**
+     * Parse the given string, looking for a packet.
+     * @param str
+     */
+    void Parse(String str);
+
+    /**
      * Method to be called by Parse method when a packet has been completely parsed.
      * @param packet
      */
