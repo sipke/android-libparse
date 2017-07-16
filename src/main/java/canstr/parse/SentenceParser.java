@@ -64,13 +64,23 @@ public class SentenceParser implements IParse {
      * @param data new data to append to any existing data
      */
     public void Parse(byte[] data) {
-        StringBuilder incoming = new StringBuilder();
         try {
             String str = new String(data, "UTF-8");
-            incoming.append(str);
+            Parse(str);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Append the data to previously received data and parse for the sentence delimiter.
+     * On finding a sentence, call onPacket so the inheriting class can overwrite it and deal with
+     * the actual packet.
+     * @param str new data to append to any existing data
+     */
+    public void Parse(String str) {
+        StringBuilder incoming = new StringBuilder();
+        incoming.append(str);
         int location;
         while ((location = incoming.indexOf(mDelimiter)) >= 0) {
             boolean ok = mPacket.end(incoming.substring(0, location + mDelimiter.length()));
