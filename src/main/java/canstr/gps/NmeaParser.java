@@ -102,7 +102,7 @@ public class NmeaParser extends SentenceParser {
         return file;
     }
 
-    private void LogToFile(String data)
+    protected void LogToFile(String data)
     {
         try {
             if (mLogging) {
@@ -115,7 +115,7 @@ public class NmeaParser extends SentenceParser {
     private FileLogger mLogger;
     private boolean mLogging;
 
-    private NMEA nNmea;
-    private List<GpsListener> gpsListeners = new ArrayList<GpsListener>();
+    protected NMEA nNmea;
+    protected List<GpsListener> gpsListeners = new ArrayList<GpsListener>();
 }
 
